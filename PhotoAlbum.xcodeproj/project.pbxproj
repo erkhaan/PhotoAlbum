@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -46,7 +46,6 @@
 				45C7149D7A7F893C4733A3D8 /* Pods-PhotoAlbum.debug.xcconfig */,
 				69A3553C24F27BA845FD1F37 /* Pods-PhotoAlbum.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -101,6 +100,7 @@
 				7DF86D8E26F4B0CB000BF637 /* Frameworks */,
 				7DF86D8F26F4B0CB000BF637 /* Resources */,
 				5C8394221DADC77C99738977 /* [CP] Embed Pods Frameworks */,
+				7DF86DAD26F4C273000BF637 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -172,6 +172,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PhotoAlbum/Pods-PhotoAlbum-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		7DF86DAD26F4C273000BF637 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		F10CAE58A2F20C8E294C4363 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
