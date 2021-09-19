@@ -38,10 +38,6 @@ class AlbumsViewController: UIViewController {
             maker.bottom.top.left.right.equalToSuperview()
         }
     }
-
-    @objc private func buttonTapped() {
-        router.trigger(.photos)
-    }
 }
 
 // MARK: Table View Data Source
