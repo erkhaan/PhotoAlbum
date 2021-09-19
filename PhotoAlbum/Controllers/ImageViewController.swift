@@ -9,7 +9,7 @@ class ImageViewController: UIViewController {
         setupViews()
     }
 
-    func setupViews() {
+    private func setupViews() {
         let label = UILabel()
         label.text = "Image"
         label.font = UIFont.systemFont(ofSize: 30)

@@ -19,6 +19,8 @@ class AuthViewController: UIViewController {
         view.addSubview(loginButton)
     }
 
+    // comment: Try to move token validation to viewDidLoad
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(false)
         if let token = AccessToken.current, !token.isExpired, !token.isDataAccessExpired {
