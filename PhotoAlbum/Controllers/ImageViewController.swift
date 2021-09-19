@@ -1,11 +1,5 @@
-//
-//  ImageViewController.swift
-//  PhotoAlbum
-//
-//  Created by Erkhaan on 18.09.2021.
-//
-
 import UIKit
+import SnapKit
 
 class ImageViewController: UIViewController {
 

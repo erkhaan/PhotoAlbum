@@ -1,13 +1,12 @@
-//
-//  PhotosViewController.swift
-//  PhotoAlbum
-//
-//  Created by Erkhaan on 18.09.2021.
-//
-
 import UIKit
+import SnapKit
+import XCoordinator
 
 class PhotosViewController: UIViewController {
+
+    // MARK: Router
+
+    var router: UnownedRouter<PhotoAlbumRoute>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,8 +37,6 @@ class PhotosViewController: UIViewController {
     }
 
     @objc private func buttonTapped() {
-        let vc = ImageViewController()
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true, completion: nil)
+        router.trigger(.image)
     }
 }

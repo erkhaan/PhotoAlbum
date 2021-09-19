@@ -5,7 +5,10 @@ import XCoordinator
 class AuthViewController: UIViewController {
 
     // MARK: Router
+
     var router: UnownedRouter<AuthRoute>!
+
+    // MARK: ViewController lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()

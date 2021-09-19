@@ -6,6 +6,7 @@ enum AuthRoute: Route {
 }
 
 class AuthCoordinator: ViewCoordinator<AuthRoute> {
+
     // MARK: Initialization
 
     init() {
@@ -14,12 +15,14 @@ class AuthCoordinator: ViewCoordinator<AuthRoute> {
         viewController.router = unownedRouter
     }
 
+    // MARK: Overrides
+
     override func prepareTransition(for route: AuthRoute) -> ViewTransition {
         switch route {
         case .loginSuccessful:
-            let vc = AlbumsViewController()
-            vc.modalPresentationStyle = .fullScreen
-            return .present(vc)
+            let coordinator = PhotoAlbumCoordinator()
+            coordinator.rootViewController.modalPresentationStyle = .fullScreen
+            return .present(coordinator)
         }
     }
 }
