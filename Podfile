@@ -5,4 +5,5 @@ use_frameworks!
 target 'PhotoAlbum' do
     pod 'SnapKit', '~> 5.0.0'
     pod 'FBSDKLoginKit'
+    pod 'XCoordinator', '~> 2.0'
 end

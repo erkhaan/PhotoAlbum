@@ -1,7 +1,11 @@
 import UIKit
 import FBSDKLoginKit
+import XCoordinator
 
 class AuthViewController: UIViewController {
+
+    // MARK: Router
+    var router: UnownedRouter<AuthRoute>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,9 +20,7 @@ class AuthViewController: UIViewController {
         super.viewDidAppear(false)
         if let token = AccessToken.current, !token.isExpired, !token.isDataAccessExpired {
             // User is logged in, do work such as go to next view controller.
-            let vc = AlbumsViewController()
-            vc.modalPresentationStyle = .fullScreen
-            self.present(vc, animated: true, completion: nil)
+            router.trigger(.loginSuccessful)
         }
     }
 }

@@ -10,6 +10,7 @@
 		7D2861A426F5E1FA00087935 /* AlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2861A326F5E1FA00087935 /* AlbumsViewController.swift */; };
 		7D2861A726F5E20F00087935 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2861A626F5E20F00087935 /* PhotosViewController.swift */; };
 		7D2861AA26F5E21B00087935 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2861A926F5E21B00087935 /* ImageViewController.swift */; };
+		7D28620926F72CC900087935 /* AuthRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D28620826F72CC900087935 /* AuthRoute.swift */; };
 		7DF86D9526F4B0CB000BF637 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF86D9426F4B0CB000BF637 /* AppDelegate.swift */; };
 		7DF86D9726F4B0CB000BF637 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF86D9626F4B0CB000BF637 /* SceneDelegate.swift */; };
 		7DF86D9926F4B0CB000BF637 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF86D9826F4B0CB000BF637 /* AuthViewController.swift */; };
@@ -24,6 +25,7 @@
 		7D2861A326F5E1FA00087935 /* AlbumsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsViewController.swift; sourceTree = "<group>"; };
 		7D2861A626F5E20F00087935 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		7D2861A926F5E21B00087935 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
+		7D28620826F72CC900087935 /* AuthRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRoute.swift; sourceTree = "<group>"; };
 		7DF86D9126F4B0CB000BF637 /* PhotoAlbum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoAlbum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DF86D9426F4B0CB000BF637 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7DF86D9626F4B0CB000BF637 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +85,14 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		7D28620726F72CA900087935 /* Routes */ = {
+			isa = PBXGroup;
+			children = (
+				7D28620826F72CC900087935 /* AuthRoute.swift */,
+			);
+			path = Routes;
+			sourceTree = "<group>";
+		};
 		7DF86D8826F4B0CB000BF637 = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +114,7 @@
 		7DF86D9326F4B0CB000BF637 /* PhotoAlbum */ = {
 			isa = PBXGroup;
 			children = (
+				7D28620726F72CA900087935 /* Routes */,
 				7D2861F326F72B3200087935 /* Common */,
 				7D2861AC26F5E22A00087935 /* Controllers */,
 				7DF86D9D26F4B0CC000BF637 /* Assets.xcassets */,
@@ -246,6 +257,7 @@
 			files = (
 				7D2861A426F5E1FA00087935 /* AlbumsViewController.swift in Sources */,
 				7DF86D9926F4B0CB000BF637 /* AuthViewController.swift in Sources */,
+				7D28620926F72CC900087935 /* AuthRoute.swift in Sources */,
 				7DF86D9526F4B0CB000BF637 /* AppDelegate.swift in Sources */,
 				7DF86D9726F4B0CB000BF637 /* SceneDelegate.swift in Sources */,
 				7D2861AA26F5E21B00087935 /* ImageViewController.swift in Sources */,
