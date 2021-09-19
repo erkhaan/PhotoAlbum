@@ -47,10 +47,6 @@ class PhotosViewController: UIViewController {
             maker.bottom.top.left.right.equalToSuperview()
         }
     }
-
-    @objc private func buttonTapped() {
-        router.trigger(.image)
-    }
 }
 
 // MARK: Table View Data Source

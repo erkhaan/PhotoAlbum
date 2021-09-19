@@ -10,12 +10,12 @@ class ImageViewController: UIViewController {
     }
 
     private func setupViews() {
-        let label = UILabel()
-        label.text = "Image"
-        label.font = UIFont.systemFont(ofSize: 30)
-        view.addSubview(label)
-        label.snp.makeConstraints { maker in
-            maker.center.equalToSuperview()
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "sample")
+        imageView.contentMode = .scaleAspectFit
+        view.addSubview(imageView)
+        imageView.snp.makeConstraints { maker in
+            maker.top.bottom.left.right.equalToSuperview()
         }
     }
 }
