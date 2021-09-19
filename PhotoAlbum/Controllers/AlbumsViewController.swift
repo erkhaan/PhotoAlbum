@@ -22,37 +22,15 @@ class AlbumsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        setupViews()
         setupTableView()
     }
 
     // MARK: Private methods
 
-    private func setupViews() {
-        let label = UILabel()
-        label.text = "Albums"
-        label.font = UIFont.systemFont(ofSize: 30)
-        view.addSubview(label)
-        label.snp.makeConstraints { maker in
-            maker.center.equalToSuperview()
-        }
-        let button = UIButton()
-        button.setTitle("Open Photos", for: .normal)
-        button.backgroundColor = .black
-        button.layer.cornerRadius = 20
-        view.addSubview(button)
-        button.snp.makeConstraints { maker in
-            maker.centerX.equalToSuperview()
-            maker.top.equalTo(label).inset(150)
-            maker.width.equalTo(150)
-            maker.height.equalTo(50)
-        }
-        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-    }
-
     private func setupTableView() {
         let tableView = UITableView()
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         tableView.rowHeight = 120
         view.addSubview(tableView)
@@ -79,5 +57,14 @@ extension AlbumsViewController: UITableViewDataSource {
         cell.imageView?.image = UIImage.init(named: album.imageName)
         cell.textLabel?.text = album.name
         return cell
+    }
+}
+
+// MARK: Table View Delegate
+
+extension AlbumsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        router.trigger(.photos)
     }
 }
