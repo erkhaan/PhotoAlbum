@@ -10,12 +10,11 @@ class AlbumsViewController: UIViewController {
 
     // MARK: Properties
 
-    private var albums: [Album] = [
-        Album(imageName: "sample", name: "Cats01Cats01Cats01Cats01Cats01Cats01Cats01Cats01"),
-        Album(imageName: "sample", name: "Cats02"),
-        Album(imageName: "sample", name: "Cats03"),
-        Album(imageName: "sample", name: "Cats04"),
-        Album(imageName: "sample", name: "Cats05")]
+    private var albums: [Album] = []
+
+    private var networkService = NetworkService()
+
+    let tableView = UITableView()
 
     // MARK: ViewController lifecycle
 
@@ -24,12 +23,32 @@ class AlbumsViewController: UIViewController {
         view.backgroundColor = .white
         title = "Albums"
         setupTableView()
+        fetchAlbums()
     }
 
     // MARK: Private methods
 
+    private func fetchAlbums() {
+        networkService.fetchAlbums { [weak self] data in
+            guard let self = self else { return }
+            for album in data {
+                self.albums.append(Album(id: album.id, name: album.name))
+            }
+            self.tableView.reloadData()
+        }
+    }
+
+    /*private func fetchAlbumPictureUrl() {
+        for i in albums.indices {
+            networkService.fetchAlbumImage(from: albums[i].id) { [weak self] url in
+                guard let self = self else { return }
+                self.albums[i].url = url
+                print(url)
+            }
+        }
+    }*/
+
     private func setupTableView() {
-        let tableView = UITableView()
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
@@ -51,7 +70,8 @@ extension AlbumsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let album = albums[indexPath.row]
-        cell.imageView?.image = UIImage.init(named: album.imageName)
+        cell.imageView?.backgroundColor = .systemTeal
+        cell.imageView?.image = UIImage(named: "sample")
         cell.textLabel?.text = album.name
         return cell
     }
