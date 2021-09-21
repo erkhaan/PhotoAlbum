@@ -10,6 +10,12 @@ class PhotosViewController: UIViewController {
 
     // MARK: Properties
 
+    var currentAlbum: Album? {
+        didSet {
+            reloadData()
+        }
+    }
+
     private var photos: [Photo] = [
         Photo(imageName: "sample", name: "Cat", uploadDate: "segodnya"),
         Photo(imageName: "sample", name: "Cat", uploadDate: "segodnya"),
@@ -31,7 +37,6 @@ class PhotosViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        title = "Photos"
         setupTableView()
     }
 
@@ -47,6 +52,11 @@ class PhotosViewController: UIViewController {
         tableView.snp.makeConstraints { maker in
             maker.bottom.top.left.right.equalToSuperview()
         }
+    }
+
+    private func reloadData() {
+        loadViewIfNeeded()
+        title = currentAlbum?.name
     }
 }
 

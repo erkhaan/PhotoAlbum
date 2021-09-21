@@ -3,7 +3,7 @@ import XCoordinator
 
 enum PhotoAlbumRoute: Route {
     case albums
-    case photos
+    case photos(Album)
     case image
 }
 
@@ -23,9 +23,10 @@ class PhotoAlbumCoordinator: NavigationCoordinator<PhotoAlbumRoute> {
             let albumsViewController = AlbumsViewController()
             albumsViewController.router = unownedRouter
             return .push(albumsViewController)
-        case .photos:
+        case let .photos(album):
             let photosViewController = PhotosViewController()
             photosViewController.router = unownedRouter
+            photosViewController.currentAlbum = album
             return .push(photosViewController)
         case .image:
             let imageViewController = ImageViewController()
