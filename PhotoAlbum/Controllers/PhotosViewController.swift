@@ -16,21 +16,11 @@ class PhotosViewController: UIViewController {
         }
     }
 
-    private var photos: [Photo] = [
-        Photo(imageName: "sample", name: "Cat", uploadDate: "segodnya"),
-        Photo(imageName: "sample", name: "Cat", uploadDate: "segodnya"),
-        Photo(imageName: "sample", name: "Cat", uploadDate: "segodnya"),
-        Photo(imageName: "sample", name: "Cat", uploadDate: "segodnya"),
-        Photo(imageName: "sample", name: "Cat", uploadDate: "segodnya"),
-        Photo(imageName: "sample", name: "Cat", uploadDate: "segodnya"),
-        Photo(imageName: "sample", name: "Cat", uploadDate: "segodnya"),
-        Photo(imageName: "sample", name: "Cat", uploadDate: "segodnya"),
-        Photo(imageName: "sample", name: "Cat", uploadDate: "segodnya"),
-        Photo(imageName: "sample", name: "Cat", uploadDate: "segodnya"),
-        Photo(imageName: "sample", name: "Cat", uploadDate: "segodnya"),
-        Photo(imageName: "sample", name: "Cat", uploadDate: "segodnya"),
-        Photo(imageName: "sample", name: "Cat", uploadDate: "segodnya"),
-        Photo(imageName: "sample", name: "Cat", uploadDate: "segodnya")]
+    private var photos: [Photo] = []
+
+    private var networkService = NetworkService()
+
+    let tableView = UITableView()
 
     // MARK: View Controller lifecycle
 
@@ -38,12 +28,28 @@ class PhotosViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupTableView()
+        fetchPhotos()
     }
 
     // MARK: Private methods
 
+    private func fetchPhotos() {
+        guard let id = currentAlbum?.id else {
+            print("Album id not found")
+            return
+        }
+        networkService.fetchPhotos(from: id) { [weak self] data in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                for photo in data {
+                    self.photos.append(Photo(id: photo.id, name: photo.name, uploadDate: photo.uploadDate))
+                }
+                self.tableView.reloadData()
+            }
+        }
+    }
+
     private func setupTableView() {
-        let tableView = UITableView()
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(PhotoCell.self, forCellReuseIdentifier: "PhotoCell")
@@ -67,14 +73,25 @@ extension PhotosViewController: UITableViewDataSource {
         photos.count
     }
 
+    func configure(cell: PhotoCell, forItemAt indexPath: IndexPath) {
+        let photo = photos[indexPath.row]
+        cell.name.text = photo.name
+        cell.uploadDate.text = photo.uploadDate
+        cell.photoPicture.image = UIImage(named: "placeholder")
+        cell.activityIndicator.startAnimating()
+        networkService.fetchAlbumPicture(from: photo.id) { image in
+            DispatchQueue.main.async {
+                cell.photoPicture.image = image
+                cell.activityIndicator.stopAnimating()
+            }
+        }
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoCell", for: indexPath) as? PhotoCell else {
             return UITableViewCell()
         }
-        let photo = photos[indexPath.row]
-        cell.photoPicture.image = UIImage(named: "placeholder")
-        cell.name.text = photo.name
-        cell.uploadDate.text = photo.uploadDate
+        configure(cell: cell, forItemAt: indexPath)
         return cell
     }
 }

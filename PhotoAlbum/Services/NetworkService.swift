@@ -53,4 +53,23 @@ class NetworkService {
             }
         }
     }
+
+    func fetchPhotos(from id: String, completion: @escaping ([Photo]) -> Void) {
+        guard let token = AccessToken.current?.tokenString else {
+            print("Token expired")
+            return
+        }
+        guard let url = URL(string: graphUrl + "\(id)/photos?access_token=\(token)") else {
+            print("Wrong photos url")
+            return
+        }
+        AF.request(url).responseDecodable(of: AlbumPhotos.self) { response in
+            switch response.result {
+            case .success(let value):
+                completion(value.data)
+            case .failure(let error):
+                print("Error decoding data: \(error)")
+            }
+        }
+    }
 }
