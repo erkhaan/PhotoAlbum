@@ -29,7 +29,7 @@ class NetworkService {
         }
     }
 
-    func fetchAlbumPicture(from id: String, completion: @escaping (UIImage) -> Void) {
+    func fetchPicture(from id: String, completion: @escaping (UIImage) -> Void) {
         guard let token = AccessToken.current?.tokenString else {
             print("Token expired")
             return

@@ -70,7 +70,7 @@ extension AlbumsViewController: UITableViewDataSource {
             cell.albumPicture.image = image
         } else {
             cell.activityIndicator.startAnimating()
-            networkService.fetchAlbumPicture(from: album.id) { [weak self] image in
+            networkService.fetchPicture(from: album.id) { [weak self] image in
                 guard let self = self else { return }
                 DispatchQueue.main.async {
                     cell.albumPicture.image = image

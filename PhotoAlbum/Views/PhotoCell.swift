@@ -12,7 +12,6 @@ class PhotoCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        //addSubview(photoPicture)
         contentView.addSubview(name)
         contentView.addSubview(uploadDate)
         contentView.addSubview(photoPicture)

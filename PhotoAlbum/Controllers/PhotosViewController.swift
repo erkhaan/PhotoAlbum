@@ -63,8 +63,8 @@ class PhotosViewController: UIViewController {
         title = currentAlbum?.name
     }
 
-    @objc private func photoPictureTapped() {
-        router.trigger(.image)
+    @objc private func photoPictureTapped(_ sender: CustomTapGestureRecognizer) {
+        router.trigger(.image(photos[sender.indexPath.row].id))
     }
 }
 
@@ -81,8 +81,11 @@ extension PhotosViewController: UITableViewDataSource {
         cell.uploadDate.text = photo.uploadDate
         cell.photoPicture.image = UIImage(named: "placeholder")
         cell.selectionStyle = .none
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(photoPictureTapped))
-        cell.photoPicture.addGestureRecognizer(tapGestureRecognizer)
+        let tapRecognizer = CustomTapGestureRecognizer(
+            indexPath: indexPath,
+            target: self,
+            selector: #selector(photoPictureTapped(_:)))
+        cell.photoPicture.addGestureRecognizer(tapRecognizer)
         let cacheObject = cache.object(forKey: (indexPath as NSIndexPath).row as AnyObject)
         if cacheObject != nil {
             guard let image = cacheObject as? UIImage else {
@@ -91,7 +94,7 @@ extension PhotosViewController: UITableViewDataSource {
             cell.photoPicture.image = image
         } else {
             cell.activityIndicator.startAnimating()
-            networkService.fetchAlbumPicture(from: photo.id) { [weak self] image in
+            networkService.fetchPicture(from: photo.id) { [weak self] image in
                 guard let self = self else { return }
                 DispatchQueue.main.async {
                     cell.photoPicture.image = image

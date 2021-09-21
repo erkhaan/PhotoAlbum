@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7D099FD326F9E5FE008A62D7 /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D099FD226F9E5FE008A62D7 /* AlbumCell.swift */; };
 		7D099FD726F9F67B008A62D7 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D099FD626F9F67B008A62D7 /* PhotoCell.swift */; };
+		7D099FFE26FA49F3008A62D7 /* CustomTapGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D099FFD26FA49F3008A62D7 /* CustomTapGestureRecognizer.swift */; };
 		7D2861A426F5E1FA00087935 /* AlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2861A326F5E1FA00087935 /* AlbumsViewController.swift */; };
 		7D2861A726F5E20F00087935 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2861A626F5E20F00087935 /* PhotosViewController.swift */; };
 		7D2861AA26F5E21B00087935 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2861A926F5E21B00087935 /* ImageViewController.swift */; };
@@ -30,6 +31,7 @@
 		69A3553C24F27BA845FD1F37 /* Pods-PhotoAlbum.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoAlbum.release.xcconfig"; path = "Target Support Files/Pods-PhotoAlbum/Pods-PhotoAlbum.release.xcconfig"; sourceTree = "<group>"; };
 		7D099FD226F9E5FE008A62D7 /* AlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCell.swift; sourceTree = "<group>"; };
 		7D099FD626F9F67B008A62D7 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
+		7D099FFD26FA49F3008A62D7 /* CustomTapGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTapGestureRecognizer.swift; sourceTree = "<group>"; };
 		7D2861A326F5E1FA00087935 /* AlbumsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsViewController.swift; sourceTree = "<group>"; };
 		7D2861A626F5E20F00087935 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		7D2861A926F5E21B00087935 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 			children = (
 				7DF86D9426F4B0CB000BF637 /* AppDelegate.swift */,
 				7DF86D9626F4B0CB000BF637 /* SceneDelegate.swift */,
+				7D099FFD26FA49F3008A62D7 /* CustomTapGestureRecognizer.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				7D2861AA26F5E21B00087935 /* ImageViewController.swift in Sources */,
 				7D28621626F750CE00087935 /* Photos.swift in Sources */,
 				7D2861A726F5E20F00087935 /* PhotosViewController.swift in Sources */,
+				7D099FFE26FA49F3008A62D7 /* CustomTapGestureRecognizer.swift in Sources */,
 				7D099FD326F9E5FE008A62D7 /* AlbumCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

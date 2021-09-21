@@ -3,6 +3,18 @@ import SnapKit
 
 class ImageViewController: UIViewController {
 
+    // MARK: Properties
+
+    var photoId: String? {
+        didSet {
+            fetchImage()
+        }
+    }
+
+    private let imageView = UIImageView()
+
+    private let networkService = NetworkService()
+
     // MARK: ViewController lifecycle
 
     override func viewDidLoad() {
@@ -13,9 +25,16 @@ class ImageViewController: UIViewController {
 
     // MARK: Private methods
 
+    private func fetchImage() {
+        guard let id = photoId else {
+            print("Photo id not found")
+            return
+        }
+        print(id)
+    }
+
     private func setupViews() {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "sample")
+        imageView.image = UIImage(named: "placeholder")
         imageView.contentMode = .scaleAspectFit
         view.addSubview(imageView)
         imageView.snp.makeConstraints { maker in
