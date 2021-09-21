@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D099FD326F9E5FE008A62D7 /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D099FD226F9E5FE008A62D7 /* AlbumCell.swift */; };
 		7D2861A426F5E1FA00087935 /* AlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2861A326F5E1FA00087935 /* AlbumsViewController.swift */; };
 		7D2861A726F5E20F00087935 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2861A626F5E20F00087935 /* PhotosViewController.swift */; };
 		7D2861AA26F5E21B00087935 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2861A926F5E21B00087935 /* ImageViewController.swift */; };
@@ -26,6 +27,7 @@
 /* Begin PBXFileReference section */
 		45C7149D7A7F893C4733A3D8 /* Pods-PhotoAlbum.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoAlbum.debug.xcconfig"; path = "Target Support Files/Pods-PhotoAlbum/Pods-PhotoAlbum.debug.xcconfig"; sourceTree = "<group>"; };
 		69A3553C24F27BA845FD1F37 /* Pods-PhotoAlbum.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoAlbum.release.xcconfig"; path = "Target Support Files/Pods-PhotoAlbum/Pods-PhotoAlbum.release.xcconfig"; sourceTree = "<group>"; };
+		7D099FD226F9E5FE008A62D7 /* AlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCell.swift; sourceTree = "<group>"; };
 		7D2861A326F5E1FA00087935 /* AlbumsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsViewController.swift; sourceTree = "<group>"; };
 		7D2861A626F5E20F00087935 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		7D2861A926F5E21B00087935 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +73,14 @@
 				F56136ED5EEC81DB82872F99 /* Pods_PhotoAlbum.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7D099FD126F9E5E7008A62D7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7D099FD226F9E5FE008A62D7 /* AlbumCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		7D2861AC26F5E22A00087935 /* Controllers */ = {
@@ -144,6 +154,7 @@
 				7D2AD20F26F88FD900982FDE /* Services */,
 				7D28620726F72CA900087935 /* Routes */,
 				7D28621126F7450900087935 /* Models */,
+				7D099FD126F9E5E7008A62D7 /* Views */,
 				7D2861AC26F5E22A00087935 /* Controllers */,
 				7DF86D9D26F4B0CC000BF637 /* Assets.xcassets */,
 				7DF86D9F26F4B0CC000BF637 /* LaunchScreen.storyboard */,
@@ -294,6 +305,7 @@
 				7D2861AA26F5E21B00087935 /* ImageViewController.swift in Sources */,
 				7D28621626F750CE00087935 /* Photos.swift in Sources */,
 				7D2861A726F5E20F00087935 /* PhotosViewController.swift in Sources */,
+				7D099FD326F9E5FE008A62D7 /* AlbumCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

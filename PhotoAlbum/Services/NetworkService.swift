@@ -24,12 +24,12 @@ class NetworkService {
             case .success(let value):
                 completion(value.albumsList)
             case .failure(let error):
-                print(error)
+                print("Error decoding data: \(error)")
             }
         }
     }
 
-    func fetchAlbumPicture(from id: String, completion: @escaping (Data?) -> Void) {
+    func fetchAlbumPicture(from id: String, completion: @escaping (UIImage) -> Void) {
         guard let token = AccessToken.current?.tokenString else {
             print("Token expired")
             return
@@ -41,9 +41,15 @@ class NetworkService {
         AF.request(url).response { response in
             switch response.result {
             case .success(let value):
-                completion(value)
+                guard let data = value else {
+                    print("Data is nil")
+                    return
+                }
+                if let image = UIImage(data: data) {
+                    completion(image)
+                }
             case .failure(let error):
-                print(error)
+                print("Error fetching image: \(error)")
             }
         }
     }

@@ -40,20 +40,10 @@ class AlbumsViewController: UIViewController {
         }
     }
 
-    /*private func fetchAlbumPictureUrl() {
-        for i in albums.indices {
-            networkService.fetchAlbumImage(from: albums[i].id) { [weak self] url in
-                guard let self = self else { return }
-                self.albums[i].url = url
-                print(url)
-            }
-        }
-    }*/
-
     private func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        tableView.register(AlbumCell.self, forCellReuseIdentifier: "AlbumCell")
         tableView.rowHeight = 120
         view.addSubview(tableView)
         tableView.snp.makeConstraints { maker in
@@ -69,20 +59,24 @@ extension AlbumsViewController: UITableViewDataSource {
         albums.count
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+    func configure(cell: AlbumCell, forItemAt indexPath: IndexPath) {
         let album = albums[indexPath.row]
-
-        cell.imageView?.image = UIImage(named: "placeholder")
-        let activityIndicator = UIActivityIndicatorView()
-        cell.imageView?.addSubview(activityIndicator)
-
-        activityIndicator.snp.makeConstraints { maker in
-            maker.center.equalToSuperview()
+        cell.name.text = album.name
+        cell.albumPicture.image = UIImage(named: "placeholder")
+        cell.activityIndicator.startAnimating()
+        networkService.fetchAlbumPicture(from: album.id) { image in
+            DispatchQueue.main.async {
+                cell.albumPicture.image = image
+                cell.activityIndicator.stopAnimating()
+            }
         }
-        activityIndicator.startAnimating()
+    }
 
-        cell.textLabel?.text = album.name
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "AlbumCell", for: indexPath) as? AlbumCell else {
+            return UITableViewCell()
+        }
+        configure(cell: cell, forItemAt: indexPath)
         return cell
     }
 }

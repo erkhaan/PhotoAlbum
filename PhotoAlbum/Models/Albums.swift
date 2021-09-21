@@ -1,7 +1,5 @@
 import Foundation
 
-// MARK: API Models
-
 struct UserAlbums: Codable {
     var albumsList: [Album]
     enum CodingKeys: String, CodingKey {
