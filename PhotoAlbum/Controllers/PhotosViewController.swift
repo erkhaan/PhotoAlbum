@@ -41,7 +41,13 @@ class PhotosViewController: UIViewController {
             guard let self = self else { return }
             DispatchQueue.main.async {
                 for photo in data {
-                    self.photos.append(Photo(id: photo.id, name: photo.name, uploadDate: photo.uploadDate))
+                    self.photos.append(
+                        Photo(
+                            id: photo.id,
+                            name: photo.name,
+                            uploadDate: photo.uploadDate
+                        )
+                    )
                 }
                 self.tableView.reloadData()
             }
@@ -84,7 +90,8 @@ extension PhotosViewController: UITableViewDataSource {
         let tapRecognizer = CustomTapGestureRecognizer(
             indexPath: indexPath,
             target: self,
-            selector: #selector(photoPictureTapped(_:)))
+            selector: #selector(photoPictureTapped(_:))
+        )
         cell.photoPicture.addGestureRecognizer(tapRecognizer)
         let cacheObject = cache.object(forKey: (indexPath as NSIndexPath).row as AnyObject)
         if cacheObject != nil {

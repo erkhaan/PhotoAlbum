@@ -10,9 +10,7 @@ class ImageViewController: UIViewController {
             fetchImage()
         }
     }
-
     private let imageView = UIImageView()
-
     private let networkService = NetworkService()
 
     // MARK: ViewController lifecycle
@@ -44,7 +42,8 @@ class ImageViewController: UIViewController {
             image: UIImage(systemName: "info.circle"),
             style: .done,
             target: self,
-            action: #selector(infoButtonTapped))
+            action: #selector(infoButtonTapped)
+        )
         navigationItem.rightBarButtonItem = infoButton
     }
 
@@ -52,13 +51,14 @@ class ImageViewController: UIViewController {
         let alert = UIAlertController(
             title: "Photo Info",
             message: "Additional photo info",
-            preferredStyle: .alert)
+            preferredStyle: .alert
+        )
         let action = UIAlertAction(
             title: "Close",
             style: .default,
-            handler: nil)
+            handler: nil
+        )
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
     }
-
 }

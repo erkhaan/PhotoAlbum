@@ -1,10 +1,3 @@
-//
-//  CustomTapGestureRecognizer.swift
-//  PhotoAlbum
-//
-//  Created by Erkhaan on 22.09.2021.
-//
-
 import Foundation
 import UIKit
 
