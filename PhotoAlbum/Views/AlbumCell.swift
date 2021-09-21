@@ -32,6 +32,7 @@ class AlbumCell: UITableViewCell {
     private func configureImageView() {
         albumPicture.clipsToBounds = true
         albumPicture.contentMode = .scaleAspectFill
+        albumPicture.layer.cornerRadius = 5
     }
 
     private func configureLabel() {
@@ -48,7 +49,7 @@ class AlbumCell: UITableViewCell {
         albumPicture.snp.makeConstraints { maker in
             maker.width.height.equalTo(100)
             maker.centerY.equalToSuperview()
-            maker.leading.equalToSuperview().inset(12)
+            maker.leading.equalToSuperview().inset(15)
         }
     }
 
@@ -57,7 +58,7 @@ class AlbumCell: UITableViewCell {
         name.snp.makeConstraints { maker in
             maker.centerY.equalToSuperview()
             maker.leading.equalTo(albumPicture).inset(120)
-            maker.trailing.equalToSuperview().inset(-12)
+            maker.trailing.equalToSuperview().inset(-15)
         }
     }
 

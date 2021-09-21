@@ -35,6 +35,7 @@ class PhotoCell: UITableViewCell {
     private func configureImageView() {
         photoPicture.clipsToBounds = true
         photoPicture.contentMode = .scaleAspectFill
+        photoPicture.layer.cornerRadius = 5
     }
 
     private func configureNameLabel() {
@@ -58,25 +59,25 @@ class PhotoCell: UITableViewCell {
         photoPicture.snp.makeConstraints { maker in
             maker.centerY.equalToSuperview()
             maker.width.height.equalTo(100)
-            maker.leading.equalToSuperview().inset(12)
+            maker.leading.equalToSuperview().inset(15)
         }
     }
 
     private func setNameLabelConstraints() {
         name.translatesAutoresizingMaskIntoConstraints = false
         name.snp.makeConstraints { maker in
-            maker.centerY.equalToSuperview().inset(-20)
+            maker.centerY.equalToSuperview()
             maker.leading.equalTo(photoPicture).inset(120)
-            maker.trailing.equalToSuperview().inset(-12)
+            maker.trailing.equalToSuperview().inset(-15)
         }
     }
 
     private func setDateLabelConstraints() {
         uploadDate.translatesAutoresizingMaskIntoConstraints = false
         uploadDate.snp.makeConstraints { maker in
-            maker.top.equalTo(name).inset(20)
+            maker.top.equalTo(name).inset(25)
             maker.leading.equalTo(photoPicture).inset(120)
-            maker.trailing.equalToSuperview().inset(-12)
+            maker.trailing.equalToSuperview().inset(-15)
         }
     }
 
