@@ -11,10 +11,9 @@ class AlbumsViewController: UIViewController {
     // MARK: Properties
 
     private var albums: [Album] = []
-
     private var networkService = NetworkService()
-
-    let tableView = UITableView()
+    private let tableView = UITableView()
+    private var cache = NSCache<AnyObject, AnyObject>()
 
     // MARK: ViewController lifecycle
 
@@ -63,11 +62,21 @@ extension AlbumsViewController: UITableViewDataSource {
         let album = albums[indexPath.row]
         cell.name.text = album.name
         cell.albumPicture.image = UIImage(named: "placeholder")
-        cell.activityIndicator.startAnimating()
-        networkService.fetchAlbumPicture(from: album.id) { image in
-            DispatchQueue.main.async {
-                cell.albumPicture.image = image
-                cell.activityIndicator.stopAnimating()
+        let cacheObject = cache.object(forKey: (indexPath as NSIndexPath).row as AnyObject)
+        if cacheObject != nil {
+            guard let image = cacheObject as? UIImage else {
+                return
+            }
+            cell.albumPicture.image = image
+        } else {
+            cell.activityIndicator.startAnimating()
+            networkService.fetchAlbumPicture(from: album.id) { [weak self] image in
+                guard let self = self else { return }
+                DispatchQueue.main.async {
+                    cell.albumPicture.image = image
+                    cell.activityIndicator.stopAnimating()
+                    self.cache.setObject(image, forKey: (indexPath as NSIndexPath).row as AnyObject)
+                }
             }
         }
     }

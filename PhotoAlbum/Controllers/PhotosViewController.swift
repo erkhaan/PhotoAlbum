@@ -17,10 +17,9 @@ class PhotosViewController: UIViewController {
     }
 
     private var photos: [Photo] = []
-
     private var networkService = NetworkService()
-
-    let tableView = UITableView()
+    private let tableView = UITableView()
+    private var cache = NSCache<AnyObject, AnyObject>()
 
     // MARK: View Controller lifecycle
 
@@ -78,11 +77,21 @@ extension PhotosViewController: UITableViewDataSource {
         cell.name.text = photo.name
         cell.uploadDate.text = photo.uploadDate
         cell.photoPicture.image = UIImage(named: "placeholder")
-        cell.activityIndicator.startAnimating()
-        networkService.fetchAlbumPicture(from: photo.id) { image in
-            DispatchQueue.main.async {
-                cell.photoPicture.image = image
-                cell.activityIndicator.stopAnimating()
+        let cacheObject = cache.object(forKey: (indexPath as NSIndexPath).row as AnyObject)
+        if cacheObject != nil {
+            guard let image = cacheObject as? UIImage else {
+                return
+            }
+            cell.photoPicture.image = image
+        } else {
+            cell.activityIndicator.startAnimating()
+            networkService.fetchAlbumPicture(from: photo.id) { [weak self] image in
+                guard let self = self else { return }
+                DispatchQueue.main.async {
+                    cell.photoPicture.image = image
+                    cell.activityIndicator.stopAnimating()
+                    self.cache.setObject(image, forKey: (indexPath as NSIndexPath).row as AnyObject)
+                }
             }
         }
     }
