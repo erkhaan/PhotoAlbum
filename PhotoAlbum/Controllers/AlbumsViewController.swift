@@ -31,10 +31,12 @@ class AlbumsViewController: UIViewController {
     private func fetchAlbums() {
         networkService.fetchAlbums { [weak self] data in
             guard let self = self else { return }
-            for album in data {
-                self.albums.append(Album(id: album.id, name: album.name))
+            DispatchQueue.main.async {
+                for album in data {
+                    self.albums.append(Album(id: album.id, name: album.name))
+                }
+                self.tableView.reloadData()
             }
-            self.tableView.reloadData()
         }
     }
 
@@ -70,8 +72,16 @@ extension AlbumsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let album = albums[indexPath.row]
-        cell.imageView?.backgroundColor = .systemTeal
-        cell.imageView?.image = UIImage(named: "sample")
+
+        cell.imageView?.image = UIImage(named: "placeholder")
+        let activityIndicator = UIActivityIndicatorView()
+        cell.imageView?.addSubview(activityIndicator)
+
+        activityIndicator.snp.makeConstraints { maker in
+            maker.center.equalToSuperview()
+        }
+        activityIndicator.startAnimating()
+
         cell.textLabel?.text = album.name
         return cell
     }

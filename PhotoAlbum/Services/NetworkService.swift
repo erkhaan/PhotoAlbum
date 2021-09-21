@@ -9,7 +9,7 @@ class NetworkService {
     private var graphUrl = "https://graph.facebook.com/v12.0/"
 
     // MARK: Methods
-    
+
     func fetchAlbums(completion: @escaping ([Album]) -> Void) {
         guard let token = AccessToken.current?.tokenString else {
             print("Token expired")
