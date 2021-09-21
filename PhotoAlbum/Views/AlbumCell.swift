@@ -12,8 +12,8 @@ class AlbumCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        addSubview(albumPicture)
-        addSubview(name)
+        contentView.addSubview(albumPicture)
+        contentView.addSubview(name)
         albumPicture.addSubview(activityIndicator)
         configureImageView()
         configureLabel()
@@ -49,7 +49,7 @@ class AlbumCell: UITableViewCell {
         albumPicture.snp.makeConstraints { maker in
             maker.width.height.equalTo(100)
             maker.centerY.equalToSuperview()
-            maker.leading.equalToSuperview().inset(15)
+            maker.leading.equalToSuperview().inset(20)
         }
     }
 
@@ -58,7 +58,7 @@ class AlbumCell: UITableViewCell {
         name.snp.makeConstraints { maker in
             maker.centerY.equalToSuperview()
             maker.leading.equalTo(albumPicture).inset(120)
-            maker.trailing.equalToSuperview().inset(-15)
+            maker.trailing.equalToSuperview().inset(-20)
         }
     }
 

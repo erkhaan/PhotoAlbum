@@ -50,7 +50,6 @@ class PhotosViewController: UIViewController {
 
     private func setupTableView() {
         tableView.dataSource = self
-        tableView.delegate = self
         tableView.register(PhotoCell.self, forCellReuseIdentifier: "PhotoCell")
         tableView.rowHeight = 120
         view.addSubview(tableView)
@@ -62,6 +61,10 @@ class PhotosViewController: UIViewController {
     private func reloadData() {
         loadViewIfNeeded()
         title = currentAlbum?.name
+    }
+
+    @objc private func photoPictureTapped() {
+        router.trigger(.image)
     }
 }
 
@@ -77,6 +80,9 @@ extension PhotosViewController: UITableViewDataSource {
         cell.name.text = photo.name
         cell.uploadDate.text = photo.uploadDate
         cell.photoPicture.image = UIImage(named: "placeholder")
+        cell.selectionStyle = .none
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(photoPictureTapped))
+        cell.photoPicture.addGestureRecognizer(tapGestureRecognizer)
         let cacheObject = cache.object(forKey: (indexPath as NSIndexPath).row as AnyObject)
         if cacheObject != nil {
             guard let image = cacheObject as? UIImage else {
@@ -102,14 +108,5 @@ extension PhotosViewController: UITableViewDataSource {
         }
         configure(cell: cell, forItemAt: indexPath)
         return cell
-    }
-}
-
-// MARK: Table View Delegate
-
-extension PhotosViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        router.trigger(.image)
     }
 }

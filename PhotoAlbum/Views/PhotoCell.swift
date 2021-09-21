@@ -12,9 +12,10 @@ class PhotoCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        addSubview(photoPicture)
-        addSubview(name)
-        addSubview(uploadDate)
+        //addSubview(photoPicture)
+        contentView.addSubview(name)
+        contentView.addSubview(uploadDate)
+        contentView.addSubview(photoPicture)
         photoPicture.addSubview(activityIndicator)
         configureImageView()
         configureNameLabel()
@@ -36,6 +37,7 @@ class PhotoCell: UITableViewCell {
         photoPicture.clipsToBounds = true
         photoPicture.contentMode = .scaleAspectFill
         photoPicture.layer.cornerRadius = 5
+        photoPicture.isUserInteractionEnabled = true
     }
 
     private func configureNameLabel() {
@@ -59,7 +61,7 @@ class PhotoCell: UITableViewCell {
         photoPicture.snp.makeConstraints { maker in
             maker.centerY.equalToSuperview()
             maker.width.height.equalTo(100)
-            maker.leading.equalToSuperview().inset(15)
+            maker.leading.equalToSuperview().inset(20)
         }
     }
 
@@ -68,7 +70,7 @@ class PhotoCell: UITableViewCell {
         name.snp.makeConstraints { maker in
             maker.centerY.equalToSuperview()
             maker.leading.equalTo(photoPicture).inset(120)
-            maker.trailing.equalToSuperview().inset(-15)
+            maker.trailing.equalToSuperview().inset(-20)
         }
     }
 
@@ -77,7 +79,7 @@ class PhotoCell: UITableViewCell {
         uploadDate.snp.makeConstraints { maker in
             maker.top.equalTo(name).inset(25)
             maker.leading.equalTo(photoPicture).inset(120)
-            maker.trailing.equalToSuperview().inset(-15)
+            maker.trailing.equalToSuperview().inset(-20)
         }
     }
 
