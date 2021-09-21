@@ -28,4 +28,15 @@ class AuthViewController: UIViewController {
             router.trigger(.loginSuccessful)
         }
     }
+
+}
+
+extension AuthViewController: LoginButtonDelegate {
+    func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
+        print("asdf")
+        router.trigger(.loginSuccessful)
+    }
+
+    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
+    }
 }

@@ -60,7 +60,7 @@ extension AlbumsViewController: UITableViewDataSource {
 
     func configure(cell: AlbumCell, forItemAt indexPath: IndexPath) {
         let album = albums[indexPath.row]
-        cell.name.text = album.name
+        cell.name.text = album.name ?? "Untitled"
         cell.albumPicture.image = UIImage(named: "placeholder")
         let cacheObject = cache.object(forKey: (indexPath as NSIndexPath).row as AnyObject)
         if cacheObject != nil {

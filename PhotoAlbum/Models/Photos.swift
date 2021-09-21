@@ -6,7 +6,7 @@ struct AlbumPhotos: Codable {
 
 struct Photo: Codable {
     var id: String
-    var name: String
+    var name: String?
     var uploadDate: String
 
     enum CodingKeys: String, CodingKey {

@@ -9,7 +9,7 @@ struct UserAlbums: Codable {
 
 struct Album: Codable {
     var id: String
-    var name: String
+    var name: String?
 }
 
 struct AlbumPicture: Codable {

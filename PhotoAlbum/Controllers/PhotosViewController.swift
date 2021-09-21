@@ -44,7 +44,7 @@ class PhotosViewController: UIViewController {
                     self.photos.append(
                         Photo(
                             id: photo.id,
-                            name: photo.name,
+                            name: photo.name ?? "Untitled",
                             uploadDate: photo.uploadDate
                         )
                     )
