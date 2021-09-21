@@ -31,7 +31,10 @@ class AuthViewController: UIViewController {
 
 extension AuthViewController: LoginButtonDelegate {
     func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
-        router.trigger(.loginSuccessful)
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.router.trigger(.loginSuccessful)
+        }
     }
 
     func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
