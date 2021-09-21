@@ -11,20 +11,20 @@ class PhotosViewController: UIViewController {
     // MARK: Properties
 
     private var photos: [Photo] = [
-        Photo(imageName: "sample", name: "Cat", uploadData: "segodnya"),
-        Photo(imageName: "sample", name: "Cat", uploadData: "segodnya"),
-        Photo(imageName: "sample", name: "Cat", uploadData: "segodnya"),
-        Photo(imageName: "sample", name: "Cat", uploadData: "segodnya"),
-        Photo(imageName: "sample", name: "Cat", uploadData: "segodnya"),
-        Photo(imageName: "sample", name: "Cat", uploadData: "segodnya"),
-        Photo(imageName: "sample", name: "Cat", uploadData: "segodnya"),
-        Photo(imageName: "sample", name: "Cat", uploadData: "segodnya"),
-        Photo(imageName: "sample", name: "Cat", uploadData: "segodnya"),
-        Photo(imageName: "sample", name: "Cat", uploadData: "segodnya"),
-        Photo(imageName: "sample", name: "Cat", uploadData: "segodnya"),
-        Photo(imageName: "sample", name: "Cat", uploadData: "segodnya"),
-        Photo(imageName: "sample", name: "Cat", uploadData: "segodnya"),
-        Photo(imageName: "sample", name: "Cat", uploadData: "segodnya")]
+        Photo(imageName: "sample", name: "Cat", uploadDate: "segodnya"),
+        Photo(imageName: "sample", name: "Cat", uploadDate: "segodnya"),
+        Photo(imageName: "sample", name: "Cat", uploadDate: "segodnya"),
+        Photo(imageName: "sample", name: "Cat", uploadDate: "segodnya"),
+        Photo(imageName: "sample", name: "Cat", uploadDate: "segodnya"),
+        Photo(imageName: "sample", name: "Cat", uploadDate: "segodnya"),
+        Photo(imageName: "sample", name: "Cat", uploadDate: "segodnya"),
+        Photo(imageName: "sample", name: "Cat", uploadDate: "segodnya"),
+        Photo(imageName: "sample", name: "Cat", uploadDate: "segodnya"),
+        Photo(imageName: "sample", name: "Cat", uploadDate: "segodnya"),
+        Photo(imageName: "sample", name: "Cat", uploadDate: "segodnya"),
+        Photo(imageName: "sample", name: "Cat", uploadDate: "segodnya"),
+        Photo(imageName: "sample", name: "Cat", uploadDate: "segodnya"),
+        Photo(imageName: "sample", name: "Cat", uploadDate: "segodnya")]
 
     // MARK: View Controller lifecycle
 
@@ -41,7 +41,7 @@ class PhotosViewController: UIViewController {
         let tableView = UITableView()
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        tableView.register(PhotoCell.self, forCellReuseIdentifier: "PhotoCell")
         tableView.rowHeight = 120
         view.addSubview(tableView)
         tableView.snp.makeConstraints { maker in
@@ -58,12 +58,13 @@ extension PhotosViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoCell", for: indexPath) as? PhotoCell else {
+            return UITableViewCell()
+        }
         let photo = photos[indexPath.row]
-        cell.imageView?.image = UIImage.init(named: photo.imageName)
-        cell.textLabel?.text = photo.name
-        cell.detailTextLabel?.text = photo.uploadData
+        cell.photoPicture.image = UIImage(named: "placeholder")
+        cell.name.text = photo.name
+        cell.uploadDate.text = photo.uploadDate
         return cell
     }
 }

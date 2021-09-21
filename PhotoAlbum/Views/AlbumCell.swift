@@ -17,6 +17,7 @@ class AlbumCell: UITableViewCell {
         albumPicture.addSubview(activityIndicator)
         configureImageView()
         configureLabel()
+        configureActivityIndicator()
         setImageConstraints()
         setLabelConstraints()
         setActivityIndicatorConstrains()
@@ -40,7 +41,6 @@ class AlbumCell: UITableViewCell {
 
     private func configureActivityIndicator() {
         activityIndicator.hidesWhenStopped = true
-
     }
 
     private func setImageConstraints() {
