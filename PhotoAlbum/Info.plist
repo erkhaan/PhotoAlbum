@@ -73,7 +73,6 @@
     <string>0fed670e1c63e0dc25171c1358300b0b</string>
     <key>FacebookDisplayName</key>
     <string>PhotoAlbum</string>
-
     <key>LSApplicationQueriesSchemes</key>
     <array>
       <string>fbapi</string>

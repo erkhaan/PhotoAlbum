@@ -11,7 +11,7 @@ class AuthCoordinator: ViewCoordinator<AuthRoute> {
 
     init() {
         let viewController = AuthViewController()
-        super.init(rootViewController: viewController)
+        super.init(rootViewController: viewController, initialRoute: nil)
         viewController.router = unownedRouter
     }
 
