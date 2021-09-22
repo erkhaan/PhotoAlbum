@@ -23,6 +23,7 @@ class AlbumsViewController: UIViewController {
         title = "Albums"
         setupTableView()
         fetchAlbums()
+        setupRightBarButton()
     }
 
     // MARK: Private methods
@@ -39,6 +40,17 @@ class AlbumsViewController: UIViewController {
         }
     }
 
+    private func setupRightBarButton() {
+        let closeButton = UIBarButtonItem(
+            title: "Close",
+            style: .plain,
+            target: self,
+            action: #selector(closeButtonTapped)
+        )
+        closeButton.tintColor = .black
+        navigationItem.rightBarButtonItem = closeButton
+    }
+
     private func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
@@ -48,6 +60,10 @@ class AlbumsViewController: UIViewController {
         tableView.snp.makeConstraints { maker in
             maker.bottom.top.left.right.equalToSuperview()
         }
+    }
+
+    @objc private func closeButtonTapped() {
+        router.trigger(.logOut)
     }
 }
 

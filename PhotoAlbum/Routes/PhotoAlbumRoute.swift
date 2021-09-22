@@ -5,6 +5,7 @@ enum PhotoAlbumRoute: Route {
     case albums
     case photos(Album)
     case image(String)
+    case logOut
 }
 
 class PhotoAlbumCoordinator: NavigationCoordinator<PhotoAlbumRoute> {
@@ -32,6 +33,8 @@ class PhotoAlbumCoordinator: NavigationCoordinator<PhotoAlbumRoute> {
             let imageViewController = ImageViewController()
             imageViewController.photoId = id
             return .push(imageViewController)
+        case .logOut:
+            return .dismiss()
         }
     }
 
