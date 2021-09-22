@@ -5,13 +5,10 @@ class ImageViewController: UIViewController {
 
     // MARK: Properties
 
-    var photoId: String? {
-        didSet {
-            fetchImage()
-        }
-    }
+    var photoId: String?
     private let imageView = UIImageView()
     private let networkService = NetworkService()
+    private var photoNode = PhotoNode(id: "", height: 0, width: 0, createdTime: "", images: [Image]())
 
     // MARK: ViewController lifecycle
 
@@ -19,16 +16,38 @@ class ImageViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupViews()
+        fetchPhotoNode()
     }
 
     // MARK: Private methods
 
     private func fetchImage() {
+        networkService.fetchImage(from: photoNode.images[0].url) { image in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.imageView.image = image
+            }
+        }
+    }
+
+    private func fetchPhotoNode() {
         guard let id = photoId else {
             print("Photo id not found")
             return
         }
-        print(id)
+        networkService.fetchPhotoNode(from: id) { data in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.photoNode = PhotoNode(
+                    id: data.id,
+                    height: data.height,
+                    width: data.width,
+                    createdTime: data.createdTime,
+                    images: data.images
+                )
+                self.fetchImage()
+            }
+        }
     }
 
     private func setupViews() {

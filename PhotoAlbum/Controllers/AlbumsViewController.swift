@@ -28,9 +28,9 @@ class AlbumsViewController: UIViewController {
     // MARK: Private methods
 
     private func fetchAlbums() {
-        networkService.fetchAlbums { [weak self] data in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
+        networkService.fetchAlbums { data in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
                 for album in data {
                     self.albums.append(Album(id: album.id, name: album.name))
                 }
@@ -70,9 +70,9 @@ extension AlbumsViewController: UITableViewDataSource {
             cell.albumPicture.image = image
         } else {
             cell.activityIndicator.startAnimating()
-            networkService.fetchPicture(from: album.id) { [weak self] image in
-                guard let self = self else { return }
-                DispatchQueue.main.async {
+            networkService.fetchPicture(from: album.id) { image in
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
                     cell.albumPicture.image = image
                     cell.activityIndicator.stopAnimating()
                     self.cache.setObject(image, forKey: (indexPath as NSIndexPath).row as AnyObject)

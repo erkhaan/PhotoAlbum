@@ -37,9 +37,9 @@ class PhotosViewController: UIViewController {
             print("Album id not found")
             return
         }
-        networkService.fetchPhotos(from: id) { [weak self] data in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
+        networkService.fetchPhotos(from: id) { data in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
                 for photo in data {
                     self.photos.append(
                         Photo(
@@ -101,9 +101,9 @@ extension PhotosViewController: UITableViewDataSource {
             cell.photoPicture.image = image
         } else {
             cell.activityIndicator.startAnimating()
-            networkService.fetchPicture(from: photo.id) { [weak self] image in
-                guard let self = self else { return }
-                DispatchQueue.main.async {
+            networkService.fetchPicture(from: photo.id) { image in
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
                     cell.photoPicture.image = image
                     cell.activityIndicator.stopAnimating()
                     self.cache.setObject(image, forKey: (indexPath as NSIndexPath).row as AnyObject)
