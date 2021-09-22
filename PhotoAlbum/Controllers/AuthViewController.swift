@@ -88,6 +88,18 @@ class AuthViewController: UIViewController {
 
 extension AuthViewController: LoginButtonDelegate {
     func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
+        let alert = UIAlertController(
+            title: "Successful Login!",
+            message: nil,
+            preferredStyle: .alert
+        )
+        let action = UIAlertAction(
+            title: "Close",
+            style: .default,
+            handler: nil
+        )
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
     }
 
     func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
