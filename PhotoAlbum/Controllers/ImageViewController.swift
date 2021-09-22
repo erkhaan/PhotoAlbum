@@ -51,7 +51,7 @@ class ImageViewController: UIViewController {
     }
 
     private func setupViews() {
-        imageView.image = UIImage(named: "placeholder")
+        imageView.image = UIImage(named: "placeholderhigh")
         imageView.contentMode = .scaleAspectFit
         view.addSubview(imageView)
         imageView.snp.makeConstraints { maker in
@@ -69,9 +69,23 @@ class ImageViewController: UIViewController {
     @objc private func infoButtonTapped() {
         let alert = UIAlertController(
             title: "Photo Info",
-            message: "Additional photo info",
+            message: nil,
             preferredStyle: .alert
         )
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = NSTextAlignment.left
+        let attributedMessage = NSMutableAttributedString(
+            string: """
+            Width: \(photoNode.width)
+            Height: \(photoNode.height)
+            Id: \(photoNode.id)
+            """,
+            attributes: [
+                NSAttributedString.Key.paragraphStyle: paragraphStyle,
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13.0)
+            ]
+        )
+        alert.setValue(attributedMessage, forKey: "attributedMessage")
         let action = UIAlertAction(
             title: "Close",
             style: .default,

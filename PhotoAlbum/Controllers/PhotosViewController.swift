@@ -72,6 +72,18 @@ class PhotosViewController: UIViewController {
     @objc private func photoPictureTapped(_ sender: CustomTapGestureRecognizer) {
         router.trigger(.image(photos[sender.indexPath.row].id))
     }
+
+    private func formatDate(date: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        guard let newDate = dateFormatter.date(from: date) else {
+            print("date error")
+            return date
+        }
+        dateFormatter.dateFormat = "dd MMMM yyyy"
+        let res = dateFormatter.string(from: newDate)
+        return res
+    }
 }
 
 // MARK: Table View Data Source
@@ -84,7 +96,7 @@ extension PhotosViewController: UITableViewDataSource {
     func configure(cell: PhotoCell, forItemAt indexPath: IndexPath) {
         let photo = photos[indexPath.row]
         cell.name.text = photo.name
-        cell.uploadDate.text = photo.uploadDate
+        cell.uploadDate.text = formatDate(date: photo.uploadDate)
         cell.photoPicture.image = UIImage(named: "placeholder")
         cell.selectionStyle = .none
         let tapRecognizer = CustomTapGestureRecognizer(
