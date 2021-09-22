@@ -76,7 +76,7 @@ class AuthViewController: UIViewController {
                 preferredStyle: .alert
             )
             let action = UIAlertAction(
-                title: "Okay",
+                title: "Close",
                 style: .default,
                 handler: nil
             )
