@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-class ImageViewController: UIViewController {
+final class ImageViewController: UIViewController {
     
     // MARK: Properties
     

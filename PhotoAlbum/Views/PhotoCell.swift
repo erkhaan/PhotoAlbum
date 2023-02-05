@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class PhotoCell: UITableViewCell {
+final class PhotoCell: UITableViewCell {
 
     // MARK: Properties
 

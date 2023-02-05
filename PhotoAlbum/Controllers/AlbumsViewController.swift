@@ -2,7 +2,7 @@ import UIKit
 import SnapKit
 import XCoordinator
 
-class AlbumsViewController: UIViewController {
+final class AlbumsViewController: UIViewController {
     
     // MARK: Router
     

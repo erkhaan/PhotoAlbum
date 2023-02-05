@@ -8,7 +8,7 @@ enum PhotoAlbumRoute: Route {
     case logOut
 }
 
-class PhotoAlbumCoordinator: NavigationCoordinator<PhotoAlbumRoute> {
+final class PhotoAlbumCoordinator: NavigationCoordinator<PhotoAlbumRoute> {
 
     // MARK: Initialization
 

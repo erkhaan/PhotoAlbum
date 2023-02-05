@@ -2,7 +2,7 @@ import UIKit
 import SnapKit
 import XCoordinator
 
-class PhotosViewController: UIViewController {
+final class PhotosViewController: UIViewController {
     
     // MARK: Router
     

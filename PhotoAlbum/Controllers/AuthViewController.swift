@@ -3,7 +3,7 @@ import FBSDKLoginKit
 import XCoordinator
 import SnapKit
 
-class AuthViewController: UIViewController {
+final class AuthViewController: UIViewController {
 
     // MARK: Router
 

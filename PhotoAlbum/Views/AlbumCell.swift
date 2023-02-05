@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-class AlbumCell: UITableViewCell {
+final class AlbumCell: UITableViewCell {
 
     // MARK: Properties
 

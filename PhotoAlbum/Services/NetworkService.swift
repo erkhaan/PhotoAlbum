@@ -2,7 +2,7 @@ import Foundation
 import FBSDKCoreKit
 import Alamofire
 
-class NetworkService {
+final class NetworkService {
 
     // MARK: Properties
 

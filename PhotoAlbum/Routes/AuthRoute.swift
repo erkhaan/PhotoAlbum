@@ -5,7 +5,7 @@ enum AuthRoute: Route {
     case loginSuccessful
 }
 
-class AuthCoordinator: ViewCoordinator<AuthRoute> {
+final class AuthCoordinator: ViewCoordinator<AuthRoute> {
 
     // MARK: Initialization
 
