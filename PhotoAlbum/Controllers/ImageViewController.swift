@@ -2,54 +2,48 @@ import UIKit
 import SnapKit
 
 class ImageViewController: UIViewController {
-
+    
     // MARK: Properties
-
+    
     var photoId: String?
     private let imageView = UIImageView()
     private let networkService = NetworkService()
     private var photoNode = PhotoNode(id: "", height: 0, width: 0, createdTime: "", images: [Image]())
-
+    
     // MARK: ViewController lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupViews()
         fetchPhotoNode()
     }
-
+    
     // MARK: Private methods
-
+    
     private func fetchImage() {
-        networkService.fetchImage(from: photoNode.images[0].url) { image in
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                self.imageView.image = image
-            }
+        networkService.fetchImage(from: photoNode.images[0].url) { [weak self] image in
+            self?.imageView.image = image
         }
     }
-
+    
     private func fetchPhotoNode() {
         guard let id = photoId else {
             print("Photo id not found")
             return
         }
-        networkService.fetchPhotoNode(from: id) { data in
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                self.photoNode = PhotoNode(
-                    id: data.id,
-                    height: data.height,
-                    width: data.width,
-                    createdTime: data.createdTime,
-                    images: data.images
-                )
-                self.fetchImage()
-            }
+        networkService.fetchPhotoNode(from: id) { [weak self] data in
+            self?.photoNode = PhotoNode(
+                id: data.id,
+                height: data.height,
+                width: data.width,
+                createdTime: data.createdTime,
+                images: data.images
+            )
+            self?.fetchImage()
         }
     }
-
+    
     private func setupViews() {
         imageView.image = UIImage(named: "placeholderhigh")
         imageView.contentMode = .scaleAspectFit
@@ -65,7 +59,7 @@ class ImageViewController: UIViewController {
         )
         navigationItem.rightBarButtonItem = infoButton
     }
-
+    
     @objc private func infoButtonTapped() {
         let alert = UIAlertController(
             title: "Photo Info",
